@@ -12,7 +12,7 @@ class DashboardController extends Controller
         
         return view('Dashboard',
         [
-            'ideas' => Idea::orderBy('created_at', 'DESC')->get()
+            'ideas' => Idea::orderBy('created_at', 'DESC')->paginate(5)
         ]
     );
 

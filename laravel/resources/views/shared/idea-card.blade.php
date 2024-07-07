@@ -9,6 +9,13 @@
                         </a></h5>
                 </div>
             </div>
+            <div>
+                <form action="{{ route('idea.destroy', $idea->id) }}" method="POST">
+                    @csrf
+                    @method('delete')
+                    <button class="btn btn-danger btn-sm">X</button>
+                </form>
+            </div>
         </div>
     </div>
     <div class="card-body">
@@ -42,16 +49,10 @@
                     <div class="d-flex justify-content-between">
                         <h6 class="">Luigi
                         </h6>
-                        <small class="fs-6 fw-light text-muted"> 3 hour
-                            ago</small>
+                        <small class="fs-6 fw-light text-muted"> {{ $idea->created_at }} </small>
                     </div>
                     <p class="fs-6 mt-3 fw-light">
-                        and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and
-                        Evil)
-                        by
-                        Cicero, written in 45 BC. This book is a treatise on the theory of ethics,
-                        very
-                        popular during the Renaissan
+                        lol ur gae
                     </p>
                 </div>
             </div>

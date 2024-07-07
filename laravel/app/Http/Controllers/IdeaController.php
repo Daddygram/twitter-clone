@@ -9,12 +9,22 @@ class IdeaController extends Controller
 {
     public function store() {
 
+        request()->validate([
+            'idea' => 'required|min:5|max:240'
+        ]);
+
         $idea = Idea::create(
             [
             'tweet' => request()->get('idea', null),
             ]
         );
 
-        return redirect()->route('dashboard');
+        return redirect()->route('dashboard')->with('success', 'Idea created successfully!');
+    }
+
+    public function destroy($id) {
+        Idea::where('id', $id)->firstOrFail()->delete();
+
+        return redirect()->route('dashboard')->with('success', 'Idea deleted successfully!');
     }
 }
