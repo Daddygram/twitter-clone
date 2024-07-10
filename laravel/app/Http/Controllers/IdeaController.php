@@ -25,27 +25,22 @@ class IdeaController extends Controller
     }
 
     public function update(Idea $id) {
-        request()->validate([
+        $validated = request()->validate([
             'tweet' => 'required|min:3|max:240'
         ]);
 
-        $id->tweet = request()->get('tweet', '');
-        $id->save();
+        $id->update($validated)
 
         return redirect()->route('idea.show', $id->id)->with("success", 'Idea updated successfully');
     }
 
     public function store() {
 
-        request()->validate([
+        $validated = request()->validate([
             'tweet' => 'required|min:3|max:240'
         ]);
 
-        $idea = Idea::create(
-            [
-            'tweet' => request()->get('tweet', null),
-            ]
-        );
+        Idea::create($validated);
 
         return redirect()->route('dashboard')->with('success', 'Idea created successfully!');
     }

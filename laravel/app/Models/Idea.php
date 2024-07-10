@@ -11,5 +11,10 @@ class Idea extends Model
 
     protected $fillable = [
         'tweet',
+        'like'
     ];
+
+    public function comments() {
+        return $this->hasMany(Comment::class);
+    }
 }
