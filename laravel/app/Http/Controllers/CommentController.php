@@ -8,11 +8,11 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
-    public function store(Idea $id) {
+    public function store(Request $request, Idea $id) {
 
        $comment = new Comment();
        $comment->idea_id = $id->id;
-       $comment->content = request()->get('content');
+       $comment->content = $request->get('content');
        $comment->save();
 
 

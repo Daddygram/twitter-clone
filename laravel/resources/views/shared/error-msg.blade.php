@@ -1,6 +1,3 @@
-@error('idea')
-<div class="alert alert-danger text-danger alert-dismissible fade show" role="alert">
+<span class="d-block fs-6 text-danger mt-2">
     {{ $message }}
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-@enderror
+</span>

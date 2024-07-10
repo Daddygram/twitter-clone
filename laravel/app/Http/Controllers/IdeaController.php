@@ -24,19 +24,19 @@ class IdeaController extends Controller
         ]);
     }
 
-    public function update(Idea $id) {
-        $validated = request()->validate([
+    public function update(Request $request, Idea $id) {
+        $validated = $request->validate([
             'tweet' => 'required|min:3|max:240'
         ]);
 
-        $id->update($validated)
+        $id->update($validated);
 
         return redirect()->route('idea.show', $id->id)->with("success", 'Idea updated successfully');
     }
 
-    public function store() {
+    public function store(Request $request) {
 
-        $validated = request()->validate([
+        $validated = $request->validate([
             'tweet' => 'required|min:3|max:240'
         ]);
 

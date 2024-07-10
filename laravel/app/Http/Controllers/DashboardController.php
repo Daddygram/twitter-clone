@@ -8,12 +8,12 @@ use Illuminate\Http\Request;
 class DashboardController extends Controller
 {
 
-    public function index() {
+    public function index(Request $request) {
 
         $ideas = Idea::orderBy('created_at', 'DESC');
-        $search = request()->get('search', '');
+        $search = $request->get('search', '');
 
-        if(request()->has('search')) {
+        if($request->has('search')) {
             $ideas = $ideas->where('tweet', 'like', '%'.$search.'%');
         };
         

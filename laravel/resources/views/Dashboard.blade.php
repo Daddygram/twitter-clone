@@ -12,8 +12,10 @@
         </div>
         <div class="col-6">
             @include('shared.success-msg')
-            @include('shared.error-msg')
             @include('shared.submit-idea')
+            @error('tweet')
+                @include('shared.error-msg', ['message'=>$message])
+            @enderror
             <hr>
             @foreach ($ideas as $idea)
             <div class="mt-3">
