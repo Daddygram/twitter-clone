@@ -7,23 +7,51 @@ use Illuminate\Http\Request;
 
 class IdeaController extends Controller
 {
+
+    public function show(Idea $id) {
+
+        return view('idea.show', [
+            'idea' => $id
+        ]);
+    }
+
+    public function edit(Idea $id) {
+        $editing = true;
+
+        return view('idea.show', [
+            'idea' => $id,
+            'editing' => $editing
+        ]);
+    }
+
+    public function update(Idea $id) {
+        request()->validate([
+            'tweet' => 'required|min:3|max:240'
+        ]);
+
+        $id->tweet = request()->get('tweet', '');
+        $id->save();
+
+        return redirect()->route('idea.show', $id->id)->with("success", 'Idea updated successfully');
+    }
+
     public function store() {
 
         request()->validate([
-            'idea' => 'required|min:5|max:240'
+            'tweet' => 'required|min:3|max:240'
         ]);
 
         $idea = Idea::create(
             [
-            'tweet' => request()->get('idea', null),
+            'tweet' => request()->get('tweet', null),
             ]
         );
 
         return redirect()->route('dashboard')->with('success', 'Idea created successfully!');
     }
 
-    public function destroy($id) {
-        Idea::where('id', $id)->firstOrFail()->delete();
+    public function destroy(Idea $id) {
+        $id->delete();
 
         return redirect()->route('dashboard')->with('success', 'Idea deleted successfully!');
     }
