@@ -9,7 +9,18 @@
             @include('shared.success-msg')
             <hr>
             <div class="mt-3">
-                @include('shared.idea-card')
+                @include('shared.user-card')
+            </div>
+            <hr>
+            @forelse ($ideas as $idea)
+                <div class="mt-3">
+                    @include('shared.idea-card')
+                </div>
+                @empty
+                <p class="text-center mt-4">No resulte.</p>
+            @endforelse
+            <div class="mt-3">
+                {{ $ideas->withQueryString()->links() }}
             </div>
         </div>
         <div class="col-3">
