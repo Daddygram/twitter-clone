@@ -16,6 +16,10 @@ class IdeaController extends Controller
     }
 
     public function edit(Idea $id) {
+        if(auth()->id() !== $id->user_id){
+            abort(404);
+        }
+        
         $editing = true;
 
         return view('idea.show', [
@@ -25,6 +29,10 @@ class IdeaController extends Controller
     }
 
     public function update(Request $request, Idea $id) {
+        if(auth()->id() !== $id->user_id){
+            abort(404);
+        }
+
         $validated = $request->validate([
             'tweet' => 'required|min:3|max:240'
         ]);
@@ -40,12 +48,18 @@ class IdeaController extends Controller
             'tweet' => 'required|min:3|max:240'
         ]);
 
+        $validated['user_id'] = auth()->id();
+
         Idea::create($validated);
 
         return redirect()->route('dashboard')->with('success', 'Idea created successfully!');
     }
 
     public function destroy(Idea $id) {
+        if(auth()->id() !== $id->user_id){
+            abort(404);
+        }
+
         $id->delete();
 
         return redirect()->route('dashboard')->with('success', 'Idea deleted successfully!');

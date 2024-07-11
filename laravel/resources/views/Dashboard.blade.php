@@ -17,13 +17,15 @@
                 @include('shared.error-msg', ['message'=>$message])
             @enderror
             <hr>
-            @foreach ($ideas as $idea)
+            @forelse ($ideas as $idea)
+                <div class="mt-3">
+                    @include('shared.idea-card')
+                </div>
+                @empty
+                <p class="text-center mt-4">No resulte.</p>
+            @endforelse
             <div class="mt-3">
-                @include('shared.idea-card')
-            </div>
-            @endforeach
-            <div class="mt-3">
-                {{ $ideas->links() }}
+                {{ $ideas->withQueryString()->links() }}
             </div>
         </div>
         <div class="col-3">

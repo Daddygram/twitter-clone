@@ -29,7 +29,7 @@ class AuthController extends Controller
             ]
         );
 
-        return redirect()->route('dashboard')->with('success', 'You have registered successfully!');
+        return redirect()->route('login')->with('success', 'You have registered successfully!');
     }
 
     public function login(){
