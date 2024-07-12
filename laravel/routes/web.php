@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [DashboardController::class, 'index'] )->name('dashboard');
+Route::get('/terms', [DashboardController::class, 'terms'] )->name('terms');
 
 Route::group([ 'prefix' => '/idea', 'as' => 'idea.', 'middleware' => ['auth'] ], function() {
     Route::post('', [IdeaController::class, 'store'] )->name('create')->withoutMiddleware('auth');

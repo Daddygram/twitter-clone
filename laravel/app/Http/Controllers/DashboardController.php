@@ -24,4 +24,8 @@ class DashboardController extends Controller
     );
 
     }
+
+    public function terms() {
+        return view('terms');
+    }
 }
