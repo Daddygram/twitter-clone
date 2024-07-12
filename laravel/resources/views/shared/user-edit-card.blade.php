@@ -6,8 +6,7 @@
             <div class="d-flex align-items-center justify-content-between">
                 <div class="d-flex align-items-center">
                     <img style="width:150px" class="me-3 aspect-square avatar-sm rounded-circle"
-                        src="{{ $user->getImageURL() }}"
-                        alt="{{ $user->name }} Avatar">
+                        src="{{ $user->getImageURL() }}" alt="{{ $user->name }} Avatar">
                     <div>
                         <input name="name" value="{{ $user->name }}" type="text" class="form-control">
                         @error('name')
@@ -23,11 +22,15 @@
                 @endauth
             </div>
             <div class="mt-4">
-                <label for="image">Change Pic</label>
-                <input name="image" type="file" class="form-control">
-                @error('image')
-                    @include('shared.error-msg', ['message' => $message])
-                @enderror
+                @auth
+                    @if (Auth::id() === $user->id)
+                        <label for="image">Change Pic</label>
+                        <input name="image" type="file" class="form-control">
+                        @error('image')
+                            @include('shared.error-msg', ['message' => $message])
+                        @enderror
+                    @endif
+                @endauth
             </div>
             <div class="px-2 mt-4">
                 <h5 class="fs-5"> About : </h5>
@@ -46,13 +49,6 @@
                     <a href="#" class="fw-light nav-link fs-6"> <span class="fas fa-comment me-1">
                         </span> {{ $user->comments()->count() }} </a>
                 </div>
-                @auth
-                    @if (Auth::id() !== $user->id)
-                        <div class="mt-3">
-                            <button class="btn btn-primary btn-sm"> Follow </button>
-                        </div>
-                    @endif
-                @endauth
             </div>
         </form>
     </div>

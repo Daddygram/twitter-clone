@@ -16,10 +16,6 @@
                 @endif
             @endauth
         </div>
-        <div class="mt-4">
-            <label for="image">Change Pic</label>
-            <input type="file" class="form-control">
-        </div>
         <div class="px-2 mt-4">
             <h5 class="fs-5"> Bio : </h5>
             <p class="fs-6 fw-light">
@@ -36,7 +32,17 @@
             @auth
                 @if (Auth::id() !== $user->id)
                     <div class="mt-3">
-                        <button class="btn btn-primary btn-sm"> Follow </button>
+                        @if (Auth::user()->follows($user))
+                            <form action="{{ route('users.unfollow', $user->id) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-danger btn-sm"> UnFollow </button>
+                            </form>
+                        @else
+                            <form action="{{ route('users.follow', $user->id) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-primary btn-sm"> Follow </button>
+                            </form>
+                        @endif
                     </div>
                 @endif
             @endauth
