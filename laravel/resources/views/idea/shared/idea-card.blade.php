@@ -5,23 +5,26 @@
                 <img style="width:50px" class="me-2 aspect-square avatar-sm rounded-circle"
                     src="{{ $idea->user->getImageURL() }}" alt="{{ $idea->user->name }}">
                 <div>
-                    <h5 class="card-title mb-0"><a href="{{ route('users.show', $idea->user->id) }}"> {{ $idea->user->name }}
+                    <h5 class="card-title mb-0"><a href="{{ route('users.show', $idea->user->id) }}">
+                            {{ $idea->user->name }}
                         </a></h5>
                 </div>
             </div>
-            <div>
-                <form action="{{ route('idea.destroy', $idea->id) }}" method="POST">
-                    @csrf
-                    @method('delete')
+            <div class="d-flex">
+                <a class="mx-2" href={{ route('idea.show', $idea->id) }}>View</a>
+                @can('idea.edit', $idea)
                     <a href={{ route('idea.edit', $idea->id) }}>edit</a>
-                    <a class="mx-2" href={{ route('idea.show', $idea->id) }}>View</a>
-                    <button class="btn btn-danger btn-sm">X</button>
-                </form>
+                    <form action="{{ route('idea.destroy', $idea->id) }}" method="POST">
+                        @csrf
+                        @method('delete')
+                        <button class="btn btn-danger btn-sm ms-1">X</button>
+                    </form>
+                @endcan
             </div>
         </div>
     </div>
     <div class="card-body">
-        @if($editing ?? false)
+        @if ($editing ?? false)
             <form action="{{ route('idea.update', $idea->id) }}" method="POST">
                 @csrf
                 @method('put')
