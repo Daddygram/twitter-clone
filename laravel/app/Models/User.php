@@ -21,7 +21,7 @@ class User extends Authenticatable
         'email',
         'password',
         'image',
-        'bio'
+        'bio',
     ];
 
     /**
@@ -60,7 +60,7 @@ class User extends Authenticatable
     }
 
     public function followers() {
-        $this->belongsToMany(User::class, 'follower_user', 'user_id', 'follower_id')->withTimestamps();
+        return $this->belongsToMany(User::class, 'follower_user', 'user_id', 'follower_id')->withTimestamps();
     }
 
     public function follows(User $user) {
@@ -73,5 +73,13 @@ class User extends Authenticatable
         }
 
         return "https://api.dicebear.com/6.x/fun-emoji/svg?seed={$this->name}";
+    }
+
+    public function likes() {
+        return $this->belongsToMany(Idea::class, 'idea_like')->withTimestamps();
+    }
+
+    public function likesIdea(Idea $id) {
+        return $this->likes()->where('idea_id', $id->id)->exists();
     }
 }
