@@ -25,12 +25,12 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrapFive();
 
-        Gate::define('idea.edit', function (User $user, Idea $idea): bool {
-            return ((bool) $user->is_admin || $user->id === $idea->user_id);
-        });
+        // Gate::define('idea.edit', function (User $user, Idea $idea): bool {
+        //     return ((bool) $user->is_admin || $user->id === $idea->user_id);
+        // });
 
-        Gate::define('idea.delete', function (User $user, Idea $idea): bool {
-            return ((bool) $user->is_admin || $user->id === $idea->user_id);
-        });
+        // Gate::define('idea.delete', function (User $user, Idea $idea): bool {
+        //     return ((bool) $user->is_admin || $user->id === $idea->user_id);
+        // });
     }
 }

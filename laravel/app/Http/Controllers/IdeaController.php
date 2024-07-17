@@ -20,7 +20,7 @@ class IdeaController extends Controller
         // if(auth()->id() !== $id->user_id){
         //     abort(404);
         // }
-        Gate::authorize('idea.edit', $id);
+        Gate::authorize('update', $id);
         
         $editing = true;
 
@@ -34,7 +34,7 @@ class IdeaController extends Controller
         // if(auth()->id() !== $id->user_id){
         //     abort(404);
         // }
-        Gate::authorize('idea.edit', $id);
+        Gate::authorize('update', $id);
 
         $validated = $request->validate([
             'tweet' => 'required|min:3|max:240'
@@ -62,7 +62,7 @@ class IdeaController extends Controller
         // if(auth()->id() !== $id->user_id){
         //     abort(404);
         // }
-        Gate::authorize('idea.delete', $id);
+        Gate::authorize('delete', $id);
 
         $id->delete();
 

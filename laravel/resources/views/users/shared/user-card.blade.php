@@ -3,18 +3,15 @@
         <div class="d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center">
                 <img style="width:150px" class="me-3 aspect-square avatar-sm rounded-circle"
-                    src="{{ $user->getImageURL() }}"
-                    alt="{{ $user->name }} Avatar">
+                    src="{{ $user->getImageURL() }}" alt="{{ $user->name }} Avatar">
                 <div>
                     <h3 class="card-title mb-0"><a href="#"> {{ $user->name }} </a></h3>
                     <span class="fs-6 text-muted"> {{ $user->email }} </span>
                 </div>
             </div>
-            @auth
-                @if (Auth::id() === $user->id)
-                    <a href={{ route('users.edit', $user->id) }}>Edit</a>
-                @endif
-            @endauth
+            @can('update', $user)
+                <a href={{ route('users.edit', $user->id) }}>Edit</a>
+            @endcan
         </div>
         <div class="px-2 mt-4">
             <h5 class="fs-5"> Bio : </h5>
