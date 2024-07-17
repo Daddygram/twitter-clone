@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
+@section('title', 'Terms')
+
 @section('content')
     <?php 
         if(DB::connection()->getPdo()){
