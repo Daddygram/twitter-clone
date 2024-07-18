@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Idea;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -11,10 +12,9 @@ class DashboardController extends Controller
     public function index(Request $request) {
 
         $ideas = Idea::orderBy('created_at', 'DESC');
-        $search = $request->get('search', '');
 
         if($request->has('search')) {
-            $ideas = $ideas->where('tweet', 'like', '%'.$search.'%');
+            $ideas = $ideas->search($request->get('search', ''));
         };
         
         return view('Dashboard',

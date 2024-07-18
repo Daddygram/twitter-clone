@@ -16,10 +16,9 @@ class FeedController extends Controller
         $followingIDs = $user->followings()->pluck('user_id');
 
         $ideas = Idea::whereIn('user_id', $followingIDs)->latest();
-        $search = $request->get('search', '');
 
         if($request->has('search')) {
-            $ideas = $ideas->where('tweet', 'like', '%'.$search.'%');
+            $ideas = $ideas->search($request->get('search', ''));
         };
         
         return view('Dashboard', [
