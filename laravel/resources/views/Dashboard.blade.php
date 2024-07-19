@@ -3,11 +3,6 @@
 @section('title', 'Home')
 
 @section('content')
-    <?php 
-        if(DB::connection()->getPdo()){
-            echo "Successfully connected to DB and DB name is " . DB::connection()->getDatabaseName();
-        }
-    ?>
     <div class="row">
         <div class="col-3">
             @include('shared.left-sidebar')
