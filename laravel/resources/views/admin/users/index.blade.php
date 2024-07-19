@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', 'Admin')
+@section('title', 'Users | Admin')
 
 @section('content')
     <div class="row">

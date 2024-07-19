@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\admin\CommentController as AdminCommentController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\admin\DashboardController as AdminController;
+use App\Http\Controllers\admin\IdeaController as AdminIdeaController;
 use App\Http\Controllers\admin\UserController as AdminUserController;
 use App\Http\Controllers\FeedController;
 use App\Http\Controllers\FollowerController;
@@ -43,4 +45,6 @@ Route::post('idea/{id}/unlike', [IdeaLikeController::class, 'unlike'])->name('id
 Route::middleware(['auth', 'admin'])->prefix('/admin')->as('admin.')->group(function () {
     Route::get('/', [AdminController::class, 'index'] )->name('dashboard');
     Route::resource('users', AdminUserController::class)->only('index');
+    Route::resource('ideas', AdminIdeaController::class)->only('index');
+    Route::resource('comments', AdminCommentController::class)->only('index', 'destroy');
 });
