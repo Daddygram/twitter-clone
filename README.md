@@ -3,7 +3,7 @@
 # Unfiltered
 
 Unfiltered is a Twitter clone built using Laravel. It allows users to post ideas, memes, and other content. The application features a range of functionalities including user authorization, CRUD operations, profile pages, an admin panel, and social interactions like following and liking posts. It uses Bootstrap for the frontend styling.
-The profile change feature on the website has been removed due insufficient storage on free hosting.
+The profile picture change feature on the website has been removed due insufficient storage on free hosting.
 
 ## Features
 
