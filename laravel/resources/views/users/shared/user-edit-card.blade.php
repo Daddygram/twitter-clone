@@ -3,8 +3,8 @@
         <form enctype="multipart/form-data" method="POST" action="{{ route('users.update', $user->id) }}">
             @csrf
             @method('put')
-            <div class="d-flex align-items-center justify-content-between">
-                <div class="d-flex align-items-center">
+            <div class="d-flex flex-column flex-md-row align-items-center justify-content-between ">
+                <div class="d-flex flex-column flex-md-row align-items-center">
                     <img style="width:150px" class="me-3 aspect-square avatar-sm rounded-circle"
                         src="{{ $user->getImageURL() }}" alt="{{ $user->name }} Avatar">
                     <div>
