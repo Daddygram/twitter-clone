@@ -8,27 +8,27 @@
             @include('shared.success-msg')
             <form class="form mt-5" action={{ route('login') }} method="post">
                 @csrf
-                <h3 class="text-center text-dark">Login</h3>
+                <h3 class="text-center text-white">Login</h3>
                 <div class="form-group mt-3">
-                    <label for="email" class="text-dark">Email:</label><br>
+                    <label for="email" class="text-white">Email:</label><br>
                     <input type="email" name="email" id="email" class="form-control">
                     @error('email')
                         @include('shared.error-msg')
                     @enderror
                 </div>
                 <div class="form-group mt-3">
-                    <label for="password" class="text-dark">Password:</label><br>
+                    <label for="password" class="text-white">Password:</label><br>
                     <input type="password" name="password" id="password" class="form-control">
                     @error('password')
                         @include('shared.error-msg')
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="remember-me" class="text-dark"></label><br>
-                    <input type="submit" name="submit" class="btn btn-dark btn-md" value="submit">
+                    <label for="remember-me" class="text-white"></label><br>
+                    <input type="submit" name="submit" class="btn btn-outline-success btn-md" value="submit">
                 </div>
                 <div class="text-right mt-2">
-                    <a href="/register" class="text-dark">Register here</a>
+                    <a href="/register" class="text-white">Register here</a>
                 </div>
             </form>
         </div>
