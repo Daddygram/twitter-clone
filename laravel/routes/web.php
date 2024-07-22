@@ -39,7 +39,7 @@ Route::get('profile', [UserController::class, 'profile'])->name('profile')->midd
 Route::post('users/{user}/follow', [FollowerController::class, 'follow'])->name('users.follow')->middleware('auth');
 Route::post('users/{user}/unfollow', [FollowerController::class, 'unfollow'])->name('users.unfollow')->middleware('auth');
 
-Route::post('idea/{id}/like', [IdeaLikeController::class, 'like'])->name('idea.like')->middleware('auth');
+Route::post('idea/{id}/like', [IdeaLikeController::class, 'like'])->name('idea.like')->middleware(['auth', 'prevent.multiple.likes']);
 Route::post('idea/{id}/unlike', [IdeaLikeController::class, 'unlike'])->name('idea.unlike')->middleware('auth');
 
 Route::middleware(['auth', 'admin'])->prefix('/admin')->as('admin.')->group(function () {
