@@ -19,6 +19,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'admin' => App\Http\Middleware\EnsureUserIsAdmin::class,
             'prevent.multiple.likes' => \App\Http\Middleware\PreventMultipleLikes::class,
+            'prevent.multiple.follows' => \App\Http\Middleware\PreventMultipleFollows::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

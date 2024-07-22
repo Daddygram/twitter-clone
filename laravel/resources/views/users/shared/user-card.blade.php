@@ -5,7 +5,7 @@
                 <img style="width:150px" class="mx-3 aspect-square avatar-sm rounded-circle"
                     src="{{ $user->getImageURL() }}" alt="{{ $user->name }} Avatar">
                 <div>
-                    <h3 class="card-title mb-0 text-center text-md-left"><a href="#"> {{ $user->name }} </a></h3>
+                    <h3 class="card-title mb-0 text-center text-md-start"><a href="#"> {{ $user->name }} </a></h3>
                     <span class="fs-6 text-muted"> {{ $user->email }} </span>
                 </div>
             </div>
@@ -22,6 +22,11 @@
             @auth
                 @if (Auth::id() !== $user->id)
                     <div class="mt-3">
+                        @if (session('message'))
+                            <div class="alert alert-warning">
+                                {{ session('message') }}
+                            </div>
+                        @endif
                         @if (Auth::user()->follows($user))
                             <form action="{{ route('users.unfollow', $user->id) }}" method="POST">
                                 @csrf

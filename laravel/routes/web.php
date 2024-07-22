@@ -36,7 +36,7 @@ Route::resource('users', UserController::class)->only('show');
 
 Route::get('profile', [UserController::class, 'profile'])->name('profile')->middleware('auth');
 
-Route::post('users/{user}/follow', [FollowerController::class, 'follow'])->name('users.follow')->middleware('auth');
+Route::post('users/{user}/follow', [FollowerController::class, 'follow'])->name('users.follow')->middleware(['auth', 'prevent.multiple.follows']);
 Route::post('users/{user}/unfollow', [FollowerController::class, 'unfollow'])->name('users.unfollow')->middleware('auth');
 
 Route::post('idea/{id}/like', [IdeaLikeController::class, 'like'])->name('idea.like')->middleware(['auth', 'prevent.multiple.likes']);
