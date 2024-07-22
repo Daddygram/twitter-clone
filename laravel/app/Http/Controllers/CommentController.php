@@ -10,13 +10,17 @@ class CommentController extends Controller
 {
     public function store(Request $request, Idea $id) {
 
-       $comment = new Comment();
-       $comment->idea_id = $id->id;
-       $comment->user_id = auth()->id();
-       $comment->content = $request->get('content');
-       $comment->save();
+        $validatedData = $request->validate([
+            'content' => 'required|string|max:255',
+        ]);
+
+        $comment = new Comment();
+        $comment->idea_id = $id->id;
+        $comment->user_id = auth()->id();
+        $comment->content = $validatedData['content'];
+        $comment->save();
 
 
-       return redirect()->route('idea.show', $id->id)->with('success','Comment posted successfully!');
+        return redirect()->route('idea.show', $id->id)->with('success','Comment posted successfully!');
     }
 }
