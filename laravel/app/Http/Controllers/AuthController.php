@@ -20,7 +20,16 @@ class AuthController extends Controller
         $validated = $request->validate([
             'name' => 'required|min:3|max:40|unique:users,name,'  . $user->id,
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6|max:40|confirmed',
+            'password' => [
+                'required',
+                'string',
+                'min:8',              // Minimum length
+                'max:40',             // Maximum length
+                'regex:/[a-z]/',      // At least one lowercase letter
+                'regex:/[A-Z]/',      // At least one uppercase letter
+                'regex:/[0-9]/',      // At least one number
+                'confirmed'  
+            ],
         ]);
 
         $user = User::create(

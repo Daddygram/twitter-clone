@@ -28,6 +28,9 @@
                     @error('password')
                         @include('shared.error-msg')
                     @enderror
+                    <p style="font-size: 0.85rem; color: grey; margin-top: 0.2rem">Your password must be at least 8 characters long and include at least 
+                        one lowercase letter, one uppercase letter and one digit.</p>
+
                 </div>
                 <div class="form-group mt-3">
                     <label for="confirm-password" class="text-white">Confirm Password:</label><br>
