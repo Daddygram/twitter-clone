@@ -24,7 +24,7 @@ The profile picture change feature on the website has been removed due insuffici
 1. **Clone the repository**:
     ```sh
     git clone https://github.com/yourusername/unfiltered.git
-    cd unfiltered
+    cd laravel
     ```
 
 2. **Install dependencies**:
