@@ -17,7 +17,7 @@ The profile picture change feature on the website has been removed due insuffici
 - **Responsive Design**: Utilizes Bootstrap for a mobile-friendly interface.
 
 ## Cons
-- Luigi calls you gae.
+- Luigi does not like you.
 
 ## Installation
 
